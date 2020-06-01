@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://10.20.91.130/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.online.college.core.auth.dao.UserpingfensDao">
+
+	<resultMap id="BeanResultMap" type="com.online.college.core.auth.domain.Userpingfen" >
+		<id column="id" property="id" jdbcType="INTEGER"/>
+		<result column="Userid" property="Userid"  jdbcType="INTEGER" />
+		<result column="Username" property="Username"  jdbcType="VARCHAR" />
+		<result column="Courseid" property="Courseid"  jdbcType="INTEGER" />
+		<result column="Coursename" property="Coursename"  jdbcType="VARCHAR" />
+		<result column="pingfenid" property="pingfenid"  jdbcType="INTEGER" />
+		
+		
+		
+		
+	</resultMap> 
+
+	<sql id="All_Columns">
+		Userid, Username, Courseid, pingfenid,Coursename, id 
+	</sql>
+	
+	
+	
+	<insert id="createSelectivity" parameterType="com.online.college.core.auth.domain.Userpingfen" flushCache="true"  useGeneratedKeys="true" keyProperty="id"  >
+		INSERT INTO t_user_pingfen
+		<trim prefix="(" suffix=")"  suffixOverrides="," >
+			
+			Userid,
+			
+			Username,
+			
+			Courseid,
+			
+			pingfenid,
+			
+			Coursename,
+			
+		</trim>
+		VALUES
+		<trim prefix="(" suffix=")"  suffixOverrides="," >
+			
+			#{Userid, jdbcType=INTEGER},
+			
+			#{Username, jdbcType=VARCHAR},
+			
+			#{Courseid, jdbcType=INTEGER},
+			
+			#{pingfenid, jdbcType=INTEGER},
+		
+			#{Coursename, jdbcType=VARCHAR},
+		</trim>
+	</insert>
+
+	
+	
+	<insert id="create" parameterType="com.online.college.core.auth.domain.Userpingfen" flushCache="true"  useGeneratedKeys="true" keyProperty="id"  >
+		INSERT INTO t_user_pingfen
+		( Userid, Username, Courseid, pingfenid,  id ) 
+		VALUES 
+		( #{Userid, jdbcType=INTEGER}, #{Username, jdbcType=VARCHAR}, #{Courseid, jdbcType=INTEGER}, #{pingfenid, jdbcType=INTEGER}, #{id, jdbcType=INTEGER} ) 
+	</insert>
+    <select id="getallpingfen" parameterType="com.online.college.core.auth.domain.Userpingfen" resultMap="BeanResultMap">
+		SELECT 
+		*
+		FROM t_user_pingfen
+		ORDER BY Userid,Courseid asc
+	</select>
+	
+
+</mapper>
